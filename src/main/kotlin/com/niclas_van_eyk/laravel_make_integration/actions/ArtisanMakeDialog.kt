@@ -7,11 +7,9 @@ import com.intellij.ui.EditorTextField
 import com.niclas_van_eyk.laravel_make_integration.laravel.LaravelProject
 import com.niclas_van_eyk.laravel_make_integration.laravel.artisan.Command
 import com.niclas_van_eyk.laravel_make_integration.laravel.artisan.CommandAutocompleteTextField
-import com.niclas_van_eyk.laravel_make_integration.laravel.artisan.ProjectCommands
 import com.niclas_van_eyk.laravel_make_integration.services.LaravelMakeIntegrationProjectService
 import java.awt.BorderLayout
 import javax.swing.JComponent
-import javax.swing.JLabel
 import javax.swing.JPanel
 
 /**
@@ -57,7 +55,9 @@ class ArtisanMakeDialog(
         return if (!service.hasCommands) {
             mutableListOf()
         } else {
-            service.commands.commands
+            service.commands.commands.filter {
+                it.name.startsWith("make:")
+            }.toMutableList()
         }
     }
 }

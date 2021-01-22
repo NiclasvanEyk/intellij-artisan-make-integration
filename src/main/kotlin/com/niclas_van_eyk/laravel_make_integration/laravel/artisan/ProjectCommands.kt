@@ -62,9 +62,7 @@ class ProjectCommands(val laravelProject: LaravelProject, val project: Project) 
                         json, LaravelConsoleApplication::class.java
                     )
 
-                commands.addAll(application.commands.filter {
-                    it.name.startsWith("make:")
-                })
+                commands.addAll(application.commands)
             }
         })
     }
