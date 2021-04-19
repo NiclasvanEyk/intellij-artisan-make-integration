@@ -1,8 +1,5 @@
 package com.niclas_van_eyk.laravel_make_integration.ide.jetbrains
 
-import com.intellij.notification.NotificationDisplayType
-import com.intellij.notification.NotificationGroup
-import com.intellij.notification.NotificationType
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.fileEditor.OpenFileDescriptor
 import com.intellij.openapi.project.Project
@@ -53,21 +50,5 @@ class JetbrainsAdapter(
 
     override fun log(key: String, message: String) {
         LaravelMakeIntegrationBundle.message(key, message)
-    }
-
-    override fun notification(message: String) {
-        val group = NotificationGroup(
-            "laravel_make_integration",
-            NotificationDisplayType.STICKY_BALLOON,
-            true
-        )
-        val notification = group.createNotification(
-            message,
-            NotificationType.ERROR
-        )
-
-        notification.isImportant = true
-
-        notification.notify(project)
     }
 }

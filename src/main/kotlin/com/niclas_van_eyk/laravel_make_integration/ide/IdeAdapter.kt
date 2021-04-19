@@ -6,6 +6,4 @@ interface IdeAdapter {
     fun getUserInput(initialValue: String?): String?
 
     fun log(key: String, message: String)
-
-    fun notification(message: String)
 }

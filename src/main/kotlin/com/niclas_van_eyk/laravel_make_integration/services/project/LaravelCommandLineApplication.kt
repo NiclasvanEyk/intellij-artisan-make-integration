@@ -1,4 +1,4 @@
-package com.niclas_van_eyk.laravel_make_integration.laravel.artisan
+package com.niclas_van_eyk.laravel_make_integration.services.project
 
 import com.google.gson.annotations.SerializedName
 

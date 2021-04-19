@@ -3,12 +3,12 @@ package com.niclas_van_eyk.laravel_make_integration.actions
 import com.intellij.openapi.progress.ProgressIndicatorProvider
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.project.Project
-import com.intellij.remote.RemoteSdkException
 import com.jetbrains.php.run.PhpEditInterpreterExecutionException
 import com.niclas_van_eyk.laravel_make_integration.filesystem.CreatedFileResolver
 import com.niclas_van_eyk.laravel_make_integration.filesystem.DirectoryResolver
 import com.niclas_van_eyk.laravel_make_integration.ide.IdeAdapter
 import com.niclas_van_eyk.laravel_make_integration.ide.jetbrains.JetbrainsAdapter
+import com.niclas_van_eyk.laravel_make_integration.ide.jetbrains.PluginNotifications
 import com.niclas_van_eyk.laravel_make_integration.laravel.ArtisanMakeParameters
 import com.niclas_van_eyk.laravel_make_integration.laravel.LaravelProject
 import com.niclas_van_eyk.laravel_make_integration.run.NoInterpreterSetException
@@ -84,15 +84,15 @@ open class ArtisanMakeSubCommandActionExecution(
         if (cancelled || makeResult == null) return
 
         if (makeResult!!.wasFailure) {
-            ideAdapter.notification(makeResult!!.log)
+            PluginNotifications.error(makeResult!!.log).notify(project)
         }
 
         val createdFilePath = createdFileResolver.getCreatedFilePath(command, parameters)
 
         if (createdFilePath == null) {
-            ideAdapter.notification(
-                "The artisan:make run succeeded, but we were unable to locate the newly created file!"
-            )
+            PluginNotifications.warning(
+                    "The artisan:make run succeeded, but we were unable to locate the newly created file!"
+            ).notify(project)
             return
         }
 

@@ -1,5 +1,8 @@
 package com.niclas_van_eyk.laravel_make_integration.laravel.artisan
 
+import com.niclas_van_eyk.laravel_make_integration.services.project.Command
+import com.niclas_van_eyk.laravel_make_integration.services.project.OptionType
+
 /**
  * Information, that can not be inferred by the --help information of a command, but is
  * helpful.

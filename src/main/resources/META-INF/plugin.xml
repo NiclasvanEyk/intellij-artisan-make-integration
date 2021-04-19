@@ -11,6 +11,9 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.niclas_van_eyk.laravel_make_integration.services.LaravelMakeIntegration"/>
         <projectService preload="true" serviceImplementation="com.niclas_van_eyk.laravel_make_integration.services.LaravelMakeIntegrationProjectService"/>
+        <notificationGroup id="laravel_make_integration_notification" displayType="BALLOON" icon="/icons/laravel-logo.svg" />
+        <toolWindow factoryClass="com.niclas_van_eyk.laravel_make_integration.toolWindow.LaravelToolWindowFactory"
+                    id="Laravel" icon="/icons/laravel-logo-for-tool-window.svg" anchor="bottom" doNotActivateOnStart="true" />
     </extensions>
 
     <projectListeners>

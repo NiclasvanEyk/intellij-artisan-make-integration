@@ -74,6 +74,7 @@ abstract class ArtisanMakeSubCommandAction(
         super.update(event)
 
         event.presentation.isEnabledAndVisible = true
+        event.presentation.description = command.description
 
         if (!isFromContextMenu) return
 
@@ -86,6 +87,7 @@ abstract class ArtisanMakeSubCommandAction(
         val relativeTargetPath = project.paths.fromProjectRoot(targetFilePath)
 
         event.presentation.isEnabled = shouldBeActivatedWhenRightClickedOn(relativeTargetPath)
+        event.presentation.description = command.description + " (disabled, as this is not the directory where artisan:make would create files of this type)"
     }
 
     open fun shouldBeActivatedWhenRightClickedOn(relativePathFromProjectRoot: String): Boolean {

@@ -5,13 +5,11 @@ import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.LabeledComponent
 import com.intellij.ui.EditorTextField
 import com.niclas_van_eyk.laravel_make_integration.laravel.LaravelProject
-import com.niclas_van_eyk.laravel_make_integration.laravel.artisan.Command
+import com.niclas_van_eyk.laravel_make_integration.services.project.Command
 import com.niclas_van_eyk.laravel_make_integration.laravel.artisan.CommandAutocompleteTextField
-import com.niclas_van_eyk.laravel_make_integration.laravel.artisan.ProjectCommands
 import com.niclas_van_eyk.laravel_make_integration.services.LaravelMakeIntegrationProjectService
 import java.awt.BorderLayout
 import javax.swing.JComponent
-import javax.swing.JLabel
 import javax.swing.JPanel
 
 /**
@@ -47,7 +45,7 @@ class ArtisanMakeDialog(
         return panel
     }
 
-    override fun getPreferredFocusedComponent(): JComponent? {
+    override fun getPreferredFocusedComponent(): JComponent {
         return editor
     }
 

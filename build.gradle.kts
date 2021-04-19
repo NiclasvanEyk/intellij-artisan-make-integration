@@ -7,7 +7,7 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.3.72"
+    id("org.jetbrains.kotlin.jvm") version "1.4.0"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.intellij") version "0.4.21"
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
@@ -28,6 +28,8 @@ val pluginUntilBuild: String by project
 val platformType: String by project
 val platformVersion: String by project
 val platformDownloadSources: String by project
+
+val phpPluginVersion: String by project
 
 group = pluginGroup
 version = pluginVersion
@@ -58,13 +60,14 @@ intellij {
     type = platformType
     downloadSources = platformDownloadSources.toBoolean()
     updateSinceUntilBuild = true
-    alternativeIdePath = "/Users/niclasvaneyk/Library/Application Support/JetBrains/Toolbox/apps/PhpStorm/ch-0/203.6682.180/PhpStorm 2020.3 EAP.app/Contents"
+    alternativeIdePath = "/Users/niclasvaneyk/Library/Application Support/JetBrains/Toolbox/apps/PhpStorm/ch-0/211.6693.120/PhpStorm 2020.3 EAP.app/Contents"
 
 //  Plugin Dependencies:
 //  https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
 
   setPlugins(
-      "com.jetbrains.php:202.6397.115"
+      "com.jetbrains.php:$phpPluginVersion",
+      "com.jetbrains.php.framework:203.5981.30"
   )
 }
 
@@ -104,11 +107,11 @@ tasks {
         untilBuild(null)
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
-        pluginDescription(closure {
-            File("./README.md").readText().lines().run {
-                subList(indexOf("<!-- Plugin description -->") + 1, indexOf("<!-- Plugin description end -->"))
-            }.joinToString("\n").run { markdownToHTML(this) }
-        })
+//        pluginDescription(closure {
+//            File("./README.md").readText().lines().run {
+//                subList(indexOf("<!-- Plugin description -->") + 1, indexOf("<!-- Plugin description end -->"))
+//            }.joinToString("\n").run { markdownToHTML(this) }
+//        })
 
         // Get the latest available change notes from the changelog file
         changeNotes(closure {
